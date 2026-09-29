@@ -5,14 +5,19 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
-public class BreakAPlate {
+public class BreakAPlate implements ActionListener {
 
+	ImageIcon Plates = new ImageIcon("../Chapter10/src/Mastery/plates.gif");
+	ImageIcon BrokenPlates = new ImageIcon("../Chapter10/src/Mastery/plates_all_broken.gif");
+	ImageIcon TwoBrokenPlates = new ImageIcon("../Chapter10/src/Mastery/plates_two_broken.gif");
 	private JFrame frame;
 
 	/**
@@ -34,7 +39,8 @@ public class BreakAPlate {
 	/**
 	 * Create the application.
 	 */
-	public BreakAPlate() {
+	public BreakAPlate() 
+	{
 		initialize();
 	}
 
@@ -62,5 +68,15 @@ public class BreakAPlate {
 		JLabel Plates = new JLabel("");
 		Plates.setBounds(10, 11, 414, 108);
 		panel.add(Plates);
+		
+		JLabel Prizes = new JLabel("");
+		Prizes.setBounds(147, 213, 142, 89);
+		panel.add(Prizes);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
