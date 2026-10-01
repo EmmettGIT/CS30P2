@@ -56,7 +56,44 @@ public class BreakAPlate implements ActionListener {
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
+		JLabel display = new JLabel("");
+		display.setBounds(10, 11, 414, 108);
+		panel.add(display);
+		
+		JLabel Prizes = new JLabel("");
+		Prizes.setBounds(147, 213, 142, 89);
+		panel.add(Prizes);
+		
 		JButton PlayButton = new JButton("Play");
+		PlayButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				
+				int newGame = 0;
+				
+				newGame = (int)(3 * Math.random() + 1);
+				
+				if(newGame == 1)
+				{
+					display.setIcon(BrokenPlates);
+				}
+				else if(newGame == 2)
+				{
+					display.setIcon(TwoBrokenPlates);
+				}
+				else if(newGame == 3)
+				{
+					display.setIcon(Plates);
+				}
+				
+			}
+			
+			
+			
+		});
+		
+		
 		PlayButton.setFont(new Font("Tahoma", Font.BOLD, 20));
 		PlayButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -64,14 +101,6 @@ public class BreakAPlate implements ActionListener {
 		});
 		PlayButton.setBounds(147, 146, 142, 56);
 		panel.add(PlayButton);
-		
-		JLabel Plates = new JLabel("");
-		Plates.setBounds(10, 11, 414, 108);
-		panel.add(Plates);
-		
-		JLabel Prizes = new JLabel("");
-		Prizes.setBounds(147, 213, 142, 89);
-		panel.add(Prizes);
 	}
 
 	@Override
