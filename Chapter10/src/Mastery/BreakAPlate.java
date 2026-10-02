@@ -1,3 +1,18 @@
+/*
+
+Program: BreakAPlate.java          Last Date of this Revision: October 2, 2026
+
+Purpose: The purpose of this code is to create a Java Swing game where the user clicks a Play button
+to randomly determine the outcome of breaking plates. It displays different broken-plate images and awards 
+either a tiger plush, sticker, or no prize based on the random result.
+
+Author: Emmett_Stransky 
+School: CHHS
+Course: CSE 3010 - Computer Science 3
+ 
+
+*/
+
 package Mastery;
 
 import java.awt.EventQueue;
@@ -12,12 +27,15 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Color;
 
 public class BreakAPlate implements ActionListener {
 
 	ImageIcon Plates = new ImageIcon("../Chapter10/src/Mastery/plates.gif");
 	ImageIcon BrokenPlates = new ImageIcon("../Chapter10/src/Mastery/plates_all_broken.gif");
 	ImageIcon TwoBrokenPlates = new ImageIcon("../Chapter10/src/Mastery/plates_two_broken.gif");
+	ImageIcon TigerPlush = new ImageIcon("../Chapter10/src/Mastery/tiger_plush.gif");
+	ImageIcon Sticker = new ImageIcon("../Chapter10/src/Mastery/sticker.gif");
 	private JFrame frame;
 
 	/**
@@ -49,22 +67,25 @@ public class BreakAPlate implements ActionListener {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 352);
+		frame.setBounds(100, 100, 307, 352);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 0, 0));
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel display = new JLabel("");
-		display.setBounds(10, 11, 414, 108);
-		panel.add(display);
+		JLabel displayplate = new JLabel("");
+		displayplate.setBackground(new Color(169, 169, 169));
+		displayplate.setBounds(10, 11, 271, 108);
+		panel.add(displayplate);
 		
-		JLabel Prizes = new JLabel("");
-		Prizes.setBounds(147, 213, 142, 89);
-		panel.add(Prizes);
+		JLabel displayprize = new JLabel("");
+		displayprize.setBounds(98, 202, 142, 89);
+		panel.add(displayprize);
 		
 		JButton PlayButton = new JButton("Play");
+		PlayButton.setBackground(new Color(250, 240, 230));
 		PlayButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -76,15 +97,18 @@ public class BreakAPlate implements ActionListener {
 				
 				if(newGame == 1)
 				{
-					display.setIcon(BrokenPlates);
+					displayplate.setIcon(BrokenPlates);
+					displayprize.setIcon(TigerPlush);
 				}
 				else if(newGame == 2)
 				{
-					display.setIcon(TwoBrokenPlates);
+					displayplate.setIcon(TwoBrokenPlates);
+					displayprize.setIcon(Sticker);
 				}
 				else if(newGame == 3)
 				{
-					display.setIcon(Plates);
+					displayplate.setIcon(Plates);
+					displayprize.setIcon(null);
 				}
 				
 			}
@@ -99,7 +123,7 @@ public class BreakAPlate implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		PlayButton.setBounds(147, 146, 142, 56);
+		PlayButton.setBounds(77, 130, 142, 56);
 		panel.add(PlayButton);
 	}
 
