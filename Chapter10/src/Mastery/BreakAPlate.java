@@ -31,13 +31,15 @@ import java.awt.Color;
 
 public class BreakAPlate implements ActionListener {
 
+	
+	private JFrame frame;
+
 	ImageIcon Plates = new ImageIcon("../Chapter10/src/Mastery/plates.gif");
 	ImageIcon BrokenPlates = new ImageIcon("../Chapter10/src/Mastery/plates_all_broken.gif");
 	ImageIcon TwoBrokenPlates = new ImageIcon("../Chapter10/src/Mastery/plates_two_broken.gif");
 	ImageIcon TigerPlush = new ImageIcon("../Chapter10/src/Mastery/tiger_plush.gif");
 	ImageIcon Sticker = new ImageIcon("../Chapter10/src/Mastery/sticker.gif");
-	private JFrame frame;
-
+	
 	/**
 	 * Launch the application.
 	 */
