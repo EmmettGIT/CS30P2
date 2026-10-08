@@ -6,7 +6,7 @@ Purpose: The purpose of this code is to create a Java Swing game where the user 
 to randomly determine the outcome of breaking plates. It displays different broken-plate images and awards 
 either a tiger plush, sticker, or no prize based on the random result.
 
-Author: Emmett_Stransky 
+
 School: CHHS
 Course: CSE 3010 - Computer Science 3
  

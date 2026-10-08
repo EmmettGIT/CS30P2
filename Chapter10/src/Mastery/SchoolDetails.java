@@ -5,7 +5,7 @@ Program: SchoolDetails.java          Last Date of this Revision: October 6, 2026
 Purpose: The purpose of this program is to create a GUI that allows the user to enter their name, grade, and school. 
 When the user clicks Submit, the program displays their school details and the corresponding school logo.
 
-Author: Emmett_Stransky 
+
 School: CHHS
 Course: CSE 3010 - Computer Science 3
  
