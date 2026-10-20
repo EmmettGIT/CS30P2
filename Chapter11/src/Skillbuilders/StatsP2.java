@@ -74,7 +74,6 @@ public class StatsP2 {
 			System.err.println("IOException" + e.getMessage());
 		}
 		
-		
 		//read data from file and process
 		try 
 		{
