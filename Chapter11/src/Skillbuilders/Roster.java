@@ -43,9 +43,7 @@ public class Roster
                 System.out.println("Enter student last name: ");
                 lastName = input.next();
 
-                writeFile.write(firstName);
-
-                writeFile.write(lastName);
+                writeFile.write(firstName + " " + lastName);
                 writeFile.newLine();
             }
 
@@ -61,23 +59,27 @@ public class Roster
         	System.err.println("IOException " + e.getMessage());
         }
 
+
         try 
         {
-        	dataFile = new File(fileName);
+            dataFile = new File(fileName);
 
-        	in = new FileReader(dataFile);
-        	readFile = new BufferedReader(in);
+            in = new FileReader(dataFile);
+            readFile = new BufferedReader(in);
 
-        	System.out.println("\n<---Class Roster--->");
+            System.out.println("\nClass Roster: ");
 
-        	while((firstName = readFile.readLine()) != null)
-        	{
-        		lastName = readFile.readLine();
+            String studentName;
 
-        		if(lastName != null)
-        		{
-        			stuName student = new stuName(firstName, lastName);
-        			System.out.println(student.toString());
+            //used ai for this while loop to help with line formatting in the console
+            while ((studentName = readFile.readLine()) != null)
+            {
+                String[] names = studentName.split(" ", 2);
+
+                if (names.length == 2)
+                {
+                    stuName student = new stuName(names[0], names[1]);
+                    System.out.println(student.toString());
                 }
             }
 
@@ -95,6 +97,7 @@ public class Roster
             System.out.println("There was a problem reading the file.");
             System.err.println("IOException " + e.getMessage());
         }
+
 
         input.close();
     }
