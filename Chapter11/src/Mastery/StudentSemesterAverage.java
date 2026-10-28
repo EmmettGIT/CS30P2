@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
@@ -163,6 +162,26 @@ public class StudentSemesterAverage {
 		saveBtn.setBackground(new Color(255, 204, 51));
 		saveBtn.setBounds(99, 436, 141, 39);
 		panel.add(saveBtn);
+		
+		saveBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		
+				// calculate average
+				try 
+				{
+					String name = stuName.getText();
+					String level = grdLvl.getText();
+					String semester = semNum.getText();
+					
+					double grade1 = Double.parseDouble(grd1.getText());
+					double grade2 = Double.parseDouble(grd2.getText());
+					double grade3 = Double.parseDouble(grd3.getText());
+					double grade4 = Double.parseDouble(grd4.getText());
+					
+					double average = (grade1 + grade2 + grade3 + grade4)/4;
+				}
+			}
+		}
 		
 		JButton filecontentsBtn = new JButton("View File Contents");
 		filecontentsBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
