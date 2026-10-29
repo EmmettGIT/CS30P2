@@ -12,6 +12,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 public class StudentSemesterAverage {
 
@@ -25,9 +32,7 @@ public class StudentSemesterAverage {
 	private JTextField grd4;
 	private JLabel avgGrade;
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -41,16 +46,10 @@ public class StudentSemesterAverage {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public StudentSemesterAverage() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 516, 525);
@@ -154,41 +153,114 @@ public class StudentSemesterAverage {
 		panel.add(percentAvg);
 		
 		JTextArea displayStuAvgs = new JTextArea();
+
 		displayStuAvgs.setBounds(10, 259, 480, 166);
+		displayStuAvgs.setLineWrap(true);
+		displayStuAvgs.setWrapStyleWord(true);
+		//used ai to help make it not editable
+		displayStuAvgs.setEditable(false);
+
 		panel.add(displayStuAvgs);
 		
 		JButton saveBtn = new JButton("Save to File");
+
 		saveBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
 		saveBtn.setBackground(new Color(255, 204, 51));
 		saveBtn.setBounds(99, 436, 141, 39);
-		panel.add(saveBtn);
-		
+
 		saveBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-		
-				// calculate average
-				try 
-				{
-					String name = stuName.getText();
-					String level = grdLvl.getText();
-					String semester = semNum.getText();
-					
-					double grade1 = Double.parseDouble(grd1.getText());
-					double grade2 = Double.parseDouble(grd2.getText());
-					double grade3 = Double.parseDouble(grd3.getText());
-					double grade4 = Double.parseDouble(grd4.getText());
-					
-					double average = (grade1 + grade2 + grade3 + grade4)/4;
-				}
-			}
-		}
+		    public void actionPerformed(ActionEvent e) {
+		        try {
+		            String name = stuName.getText();
+		            String level = grdLvl.getText();
+		            String semester = semNum.getText();
+
+		            double grade1 = Double.parseDouble(grd1.getText());
+		            double grade2 = Double.parseDouble(grd2.getText());
+		            double grade3 = Double.parseDouble(grd3.getText());
+		            double grade4 = Double.parseDouble(grd4.getText());
+
+		            double average = (grade1 + grade2 + grade3 + grade4) / 4.0;
+//used ai here to help with calculation of percentage
+		            percentAvg.setText(String.format("%.1f%%", average));
+
+		            File file = new File("../Chapter11/src/Mastery/StudentGrades.txt");
+
+		            PrintWriter output = new PrintWriter(
+		                new FileWriter(file, true)
+		            );
+
+		            output.println(
+		                "Name: " + name
+		                + ". Grade Level: " + level
+		                + ". Semester: " + semester
+		                + ". Grades: " + grade1 + " "
+		                + grade2 + " " + grade3 + " " + grade4
+		                + " Average: " + String.format("%.1f%%", average)
+		            );
+
+		            output.close();
+
+		            JOptionPane.showMessageDialog(
+		                frame,
+		                "Data saved successfully!"
+		            );
+
+		        } catch (NumberFormatException ex) {
+		            JOptionPane.showMessageDialog(
+		                frame,
+		                "Please enter a valid number for each grade."
+		            );
+
+		        } catch (IOException ex) {
+		            JOptionPane.showMessageDialog(
+		                frame,
+		                "Error saving the file."
+		            );
+		        }
+		    }
+		});
+
+		panel.add(saveBtn);
 		
 		JButton filecontentsBtn = new JButton("View File Contents");
 		filecontentsBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
 		filecontentsBtn.setBackground(new Color(255, 204, 51));
 		filecontentsBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        try {
+		            File file = new File("../Chapter11/src/Mastery/StudentGrades.txt");
+
+		            if (!file.exists()) {
+		                JOptionPane.showMessageDialog(
+		                    frame,
+		                    "No saved student records found."
+		                );
+		                return;
+		            }
+
+		            BufferedReader input = new BufferedReader(
+		                new FileReader(file)
+		            );
+
+		            StringBuilder contents = new StringBuilder();
+		            String line;
+
+		            while ((line = input.readLine()) != null) {
+		                contents.append(line).append("\n");
+		            }
+
+		            input.close();
+
+		            displayStuAvgs.setText(contents.toString());
+
+		        } catch (IOException ex) {
+		            JOptionPane.showMessageDialog(
+		                frame,
+		                "Error reading the file."
+		            );
+		        }
+		    }
 		});
 		filecontentsBtn.setBounds(260, 436, 141, 39);
 		panel.add(filecontentsBtn);
