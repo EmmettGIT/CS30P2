@@ -1,6 +1,6 @@
 package Puck;
 
-public class Puck 
+public class Puck extends Disk
 {
 	private double MIN_STD_WEIGHT = 5;
 	private double MAX_STD_WEIGHT = 5.5;
@@ -11,15 +11,50 @@ public class Puck
 	private double weight;
 	private boolean standard, youth;
 	
-	//default constructor method
-	public Puck()
-	{
-		
-	}
-	
 	//overload constructor method
 	public Puck(double w)
 	{
+		super(1.5, 1);
+		weight = w;
 		
+		if(weight >= MIN_STD_WEIGHT && weight <= MAX_STD_WEIGHT )
+		{
+			standard = true;
+			youth = false;
+		}
+		else 
+		{
+			standard = false;
+			youth = true;
+		}
 	}
+	
+	//accessor method
+	public double getWeight()
+	{
+		return weight;
+	}
+	
+	//modifier method
+	public void setWeight(double r)
+	{
+		weight = r;
+	}
+	
+	public String getDivision()
+	{
+		String div;
+		
+		if(standard)
+		{
+			div = "Puck is standard.";
+		}
+		else
+		{
+			div = "Puck is youth.";
+		}
+		
+		return div;
+	}
+	
 }
