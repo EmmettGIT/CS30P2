@@ -57,4 +57,46 @@ public class Puck extends Disk
 		return div;
 	}
 	
+	public boolean equals(Object p)
+	{
+		Puck pObj = (Puck)p;
+		
+		if(pObj.getDivision() == getDivision())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	public int compareTo(Object p)
+	{
+		Puck pObj = (Puck)p;
+		
+		if(weight < pObj.getWeight())
+		{
+			return -1;
+		}
+		else if(weight == pObj.getWeight())
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	
+	public String toString()
+	{
+		String puckString;
+		
+		puckString = "The puck has weight"
+				+ getWeight()
+				+" and division" + getDivision()
+				+".";
+		return puckString;
+	}
+	
 }
