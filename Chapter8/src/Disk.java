@@ -1,4 +1,3 @@
-
 public class Disk extends Circle 
 {
 	private double thickness;
