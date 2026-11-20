@@ -5,11 +5,10 @@ public abstract class Employee
 	private String firstName, lastName;
 	
 	//constructor method
-	
-	public Employee(String f, String l)
+	public Employee(String fn, String ln)
 	{
-		firstName = f;
-		lastName = l;
+		firstName = fn;
+		lastName = ln;
 	}
 	
 	public String toString()
