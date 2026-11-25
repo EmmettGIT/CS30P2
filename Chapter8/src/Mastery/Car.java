@@ -2,29 +2,29 @@ package Mastery;
 
 public class Car extends Vehicle
 {
-    private int numberOfDoors;
+    private double zeroToSixty;
 
-    //constructor method
-    public Car(String mk, String mdl, int yr, int doors)
+    // Constructor method
+    public Car(String mk, String mdl, int yr, double time)
     {
         super(mk, mdl, yr);
-        numberOfDoors = doors;
+        zeroToSixty = time;
     }
 
-    public int getNumberOfDoors()
+    public double get0to60()
     {
-        return numberOfDoors;
+        return zeroToSixty;
     }
 
     public String getVehicleType()
     {
-        return("Car");
+        return "Car";
     }
 
     public String toString()
     {
-        return(super.toString()
-                + ", Number of Doors: " 
-        		+ numberOfDoors);
+        return super.toString()
+                + ", 0 to 60 time: "
+                + zeroToSixty + " seconds";
     }
 }
